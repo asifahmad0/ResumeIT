@@ -1,9 +1,9 @@
 import { useUser } from '@clerk/clerk-react'
 import { useState } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
+import Navebar from './componant/Header/Navebar'
 
 function App() {
-  const [count, setCount] = useState(0)
   const {user, isLoaded,isSignedIn}= useUser()
 
   if(!isSignedIn && isLoaded){
@@ -12,6 +12,7 @@ function App() {
 
   return (
     <>
+    <Navebar />
       <Outlet />      
     </>
   )

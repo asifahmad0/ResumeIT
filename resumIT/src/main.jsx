@@ -5,8 +5,8 @@ import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Signin from './componant/auth/sign-in/Signin.jsx'
 import SignUp from './componant/auth/sign-up/Sighup.jsx'
-import Home from './Home/Index.jsx'
-import Deshboard from './deshboard/Index.jsx'
+import Home from './Home/Home.jsx'
+import Deshboard from './deshboard/Deshboard.jsx'
 import { ClerkProvider } from '@clerk/clerk-react'
 
 
@@ -16,16 +16,18 @@ const router = createBrowserRouter([
   {
     element: <App />,
     children:[
-      {
-        path:'/',
-        element: <Home />
-      },
+      
       {
         path: '/deshboard',
         element: <Deshboard />
       }
     ]
   },
+  {
+    path:'',
+    element: <Home />
+  },
+
   {
     path: '/auth/sign-in',
     element: <Signin />
