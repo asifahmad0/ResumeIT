@@ -6,8 +6,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Signin from './componant/auth/sign-in/Signin.jsx'
 import SignUp from './componant/auth/sign-up/Sighup.jsx'
 import Home from './Home/Home.jsx'
-import Deshboard from './deshboard/Deshboard.jsx'
 import { ClerkProvider } from '@clerk/clerk-react'
+import Deshboard from './componant/deshboard/Deshboard.jsx'
+import Create from './componant/create/Create.jsx'
 
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: '/deshboard',
         element: <Deshboard />
+      },
+      {
+        path:'/create',
+        element: <Create />
       }
     ]
   },
@@ -27,7 +32,6 @@ const router = createBrowserRouter([
     path:'',
     element: <Home />
   },
-
   {
     path: '/auth/sign-in',
     element: <Signin />

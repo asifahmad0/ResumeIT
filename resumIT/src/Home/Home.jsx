@@ -6,6 +6,8 @@ function Home() {
   return (
       <>
       <Navebar />
+      <div className="myresum w-[250px] h-[300px] border border-black"></div>
+
       </>
   )
 }

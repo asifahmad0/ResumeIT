@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
+:root{
+    --primary:#065d09;
+}
 .logo h1{
     font-family: 'Courier New', Courier, monospace;
-    
 }
