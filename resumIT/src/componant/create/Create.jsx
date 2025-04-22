@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Pencil, PlusSquare } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Loader2, Pencil, PlusSquare } from "lucide-react";
+import { data, Link } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
+
 import {
   Dialog,
   DialogContent,
@@ -12,17 +14,46 @@ import {
   Input,
   Textarea,
 } from "../ui/dialog";
+import Allapi from "../../../services/Allapi";
+import { useUser } from "@clerk/clerk-react";
 
 function Create() {
   const [openDialog, setDialog] = useState(false);
-  const [ResumeTitle, setResumeTitle] = useState();
+  const [ResumeTitle, setResumeTitle] = useState([]);
   const [hovered, setHovered] = useState(false);
-  const boxes = Array.from({ length: 3 });
+  const [isloading, setloding]=useState(false);
+  const {user}=useUser()
+  //const boxes = Array.from({ length: 3 });
 
-  function addResume() {
-    console.log(ResumeTitle);
-    setDialog(false);
-  }
+
+    const onCreate = async () => {
+
+      setloding(true)
+      const uid = uuidv4();
+
+      const data = {
+        data:{
+          title: ResumeTitle,
+          Resume_id: uid,
+          email: user?.primaryEmailAddress?.emailAddress,
+          userName: user?.fullName,
+        }
+      };
+      Allapi.CreateNewResume(data).then((resp)=>{
+        console.log(resp)
+        if(resp){
+          setDialog(false)
+          setDialog(false);
+          
+        }
+        
+      }, (error)=>{
+        setloding(false)
+      })
+    }
+
+  
+
 
   return (
     <div className="gap-4 w-full px-4 py-4 grid grid-cols-1 place-items-center md:grid-cols-4">
@@ -34,23 +65,23 @@ function Create() {
         <PlusSquare className="cursor-pointer" />
       </div>
 
-      {boxes.map((_, index) => (
         <div className=" flex flex-col items-center">
-          <div
-            key={index}
-            className=" min-w-[250px] min-h-[300px] bg-gray-100 border rounded-lg items-center flex items-center justify-center hover:scale-105 transition-all hover:shadow-mds"
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-          >
-            {hovered && (
-              <span className="icon">
+          <div className=" min-w-[250px] min-h-[300px] bg-gray-100 border rounded-lg items-center flex items-center justify-center hover:scale-105 transition-all hover:shadow-mds"
+            onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
+            
+            {hovered && (<span className="icon">
+
                 <Pencil className="cursor-pointer" />
               </span>
             )}
+
           </div>
           <h1 className="mt-2">{ResumeTitle}</h1>
         </div>
-      ))}
+
+
+
+
 
       {/*-----------------------------create Resume Dialog box code ----------------*/}
 
@@ -68,12 +99,15 @@ function Create() {
             <div className="flex gap-4">
               <Button
                 type="submit"
-                disabled={!ResumeTitle}
-                onClick={() => addResume()}
+                disabled={!ResumeTitle || isloading}
+                onClick={() =>{ onCreate()}}
                 className="bg-green-800 text-white cursor-pointer"
               >
-                Create
+                {
+                  isloading ? <Loader2 className="animate-spin" /> : "Create"
+                }
               </Button>
+
               <Button
                 variant="outline"
                 onClick={() => setDialog(false)}
