@@ -1,5 +1,5 @@
 {
-  "name": "my-resume",
+  "name": "backend",
   "version": "0.1.0",
   "private": true,
   "description": "A Strapi application",
@@ -15,9 +15,9 @@
     "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "5.12.5",
-    "@strapi/plugin-users-permissions": "5.12.5",
-    "@strapi/strapi": "5.12.5",
+    "@strapi/plugin-cloud": "5.12.6",
+    "@strapi/plugin-users-permissions": "5.12.6",
+    "@strapi/strapi": "5.12.6",
     "pg": "8.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -30,6 +30,6 @@
     "npm": ">=6.0.0"
   },
   "strapi": {
-    "uuid": "66a393a6-b4d8-435f-9859-7a59a69da3d0"
+    "uuid": "48ab7dc4-5323-44b9-83d2-c8a4f6b79aab"
   }
 }
