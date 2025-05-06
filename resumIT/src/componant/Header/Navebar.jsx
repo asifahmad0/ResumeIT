@@ -15,9 +15,10 @@ function Navebar() {
       
 
       {isSignedIn ? 
-      <ul className='gap-4 lg:gap-10 flex '>
-      <li><a href="/deshboard" >Deshboard</a></li>
-      <li><a href="/create">Create</a></li>
+      
+    <ul className='gap-4 lg:gap-10 flex '>
+      <li className='border border-white py-2 px-4 rounded-xl hover:bg-green-900' ><a href="/deshboard" >Deshboard</a></li>
+      {/*<li><a href="/create">Create</a></li>*/}
       <UserButton />
     </ul>:
       <Link to={'/auth/sign-in'}><button className='py-2 px-4 border 
