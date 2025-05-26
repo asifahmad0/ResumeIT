@@ -5,3 +5,5 @@ from UserResumeApi.models import UserResumeTitle
 @admin.register(UserResumeTitle)
 class resumeTitleAdmin(admin.ModelAdmin):
     list_display=['title','username','email','resume_id']
+
+# admin = admin, pass = admin
